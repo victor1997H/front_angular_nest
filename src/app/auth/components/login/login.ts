@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Authservice } from '../../services/auth'; // 👈 nombre correcto del servicio
-
+import { ActivatedRoute,Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: false,
@@ -10,7 +10,7 @@ import { Authservice } from '../../services/auth'; // 👈 nombre correcto del s
   styleUrls: ['./login.css'] // 👈 corregido: era styleUrl
 })
 export class Login {
-  private http = inject(HttpClient);
+  private router = inject(Router)
   private authService = inject(Authservice); // 👈 inyección correcta
 
   loginForm = new FormGroup({
@@ -21,7 +21,8 @@ export class Login {
   funIngresar() {
     this.authService.loginConNest(this.loginForm.value).subscribe(
       (res: any) => {
-        console.log(res);
+        console.log(res)
+        this.router.navigate(['/admin'])
       },
       (error: any) => {
         console.log(error);

@@ -2,13 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing-module';
-import { Perfil } from './components/perfil/perfil';
+import { Layout } from './layout/layout';
 import { Cliente } from './components/cliente/cliente';
-
 
 @NgModule({
   declarations: [
-    Perfil,
+    Layout,
     Cliente
   ],
   imports: [
@@ -16,4 +15,4 @@ import { Cliente } from './components/cliente/cliente';
     AdminRoutingModule
   ]
 })
-export class AdminModule { }
+export class AdminModule {}

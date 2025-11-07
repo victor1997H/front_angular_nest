@@ -1,10 +1,32 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Layout } from './layout/layout';
+import { Cliente } from './components/cliente/cliente';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    component: Layout,
+    children: [
+      {
+        path: 'cliente',
+        component: Cliente
+      },
+      {
+        path: 'inventario',
+        loadChildren: () => import('./inventario/inventario-module').then(m => m.InventarioModule)
+      },
+      {
+        path: '',
+        redirectTo: 'cliente',
+        pathMatch: 'full'
+      }
+    ]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}
